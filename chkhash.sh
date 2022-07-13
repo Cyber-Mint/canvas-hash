@@ -5,7 +5,9 @@ canvas_HASH=$(awk -F"MD5=" '{if ($2) print $2}' canvas.md)
 files_HASH=$(md5sum src/ */* 2>/dev/null | md5sum | awk -F" " '{if ($1) print $1}')
 if [ $canvas_HASH == $files_HASH ]; then
   echo "Canvas HASH matches File HASH"
+  exit 0
 else 
   echo "ERROR: Canvas HASH does not match File HASH"
+  exit 1
 fi
   
